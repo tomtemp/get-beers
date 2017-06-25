@@ -2,14 +2,10 @@ import React, { Component } from 'react';
 import { Panel } from 'react-bootstrap';
 
 export default class BeerItem extends Component {
-  onClickHandler() {
-    return;
-  } 
-
   render() {
-    const { name, tagline } = this.props.beer;
+    const { beer: { id, name, tagline }, onClickHandler } = this.props;
     return (
-      <Panel header={name} onClick={this.onClickHandler}>
+      <Panel header={name} onClick={() => onClickHandler(id)}>
         {tagline}
       </Panel>
     );
