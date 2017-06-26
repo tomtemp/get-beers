@@ -42,7 +42,7 @@ export default function reducer(state = initialState, action) {
       });
     case 'DECREMENT_PAGE':
       return Object.assign({}, state, {
-          currentPage: state.currentPage - 1
+        currentPage: state.currentPage - 1
       });
     case 'INCREMENT_PAGE':
       return Object.assign({}, state, {

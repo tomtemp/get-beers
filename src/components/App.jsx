@@ -35,12 +35,13 @@ class App extends Component {
   }
 
   setSort(sort) {
-    if (!this.props.pages[sort]) {
-      const sortedBeers = getSortedBeers(this.props.beers, sort);
+    const { pages, beers, dispatch } = this.props;
+    if (!pages[sort]) {
+      const sortedBeers = getSortedBeers(beers, sort);
       const sortedAndPagedBeers = getPagedBeers(sortedBeers);
-      this.props.dispatch({ type: 'ADD_PAGE', pages: sortedAndPagedBeers, sort});
+      dispatch({ type: 'ADD_PAGE', pages: sortedAndPagedBeers, sort});
     }
-    this.props.dispatch({type: 'SET_SORT', sort});
+    dispatch({type: 'SET_SORT', sort});
   }
 
   changePage(direction) {
@@ -63,7 +64,7 @@ class App extends Component {
           : <div>Loading...</div>
         }
         { modalOpen &&
-          <DetailsModal beer={beers[selectedBeer]}show={modalOpen} hideModal={this.hideModal}/>        
+          <DetailsModal beer={beers[selectedBeer]} show={modalOpen} hideModal={this.hideModal}/>        
         }
         <PagerFooter
           changePage={this.changePage}
